@@ -1,8 +1,8 @@
 {
-  "name": "",
+  "name": "skull-king-counter-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "type": "module",
   "license": "AGPL-version-3.0",
   "private": false,
@@ -18,21 +18,22 @@
   "bugs": "",
   "keywords": [],
   "author": {
-    "name": "",
+    "name": "Alex Bolshakov",
     "email": "",
-    "url": ""
+    "url": "https://github.com/Bolshialex/skull-king-counter"
   },
-  "contributors": [
-
-  ],
+  "contributors": [],
   "scripts": {
-    "dev": "",
+    "dev": "nodemon",
     "test": ""
   },
   "dependencies": {
-
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
   },
   "devDependencies": {
-
+    "nodemon": "^3.1.10"
   }
 }
