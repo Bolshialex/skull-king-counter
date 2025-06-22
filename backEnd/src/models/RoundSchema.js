@@ -3,6 +3,7 @@ import { DataTypes } from "sequelize";
 
 const Round = sequelize.define("round", {
   id: {
+    primaryKey: true,
     type: DataTypes.INTEGER,
     autoIncrement: true,
   },
@@ -12,5 +13,4 @@ const Round = sequelize.define("round", {
   },
 });
 
-await Round.schema({});
 export default Round;

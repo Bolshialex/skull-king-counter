@@ -3,6 +3,7 @@ import { DataTypes } from "sequelize";
 
 const PlayerRound = sequelize.define("player_round", {
   id: {
+    primaryKey: true,
     type: DataTypes.INTEGER,
     autoIncrement: true,
   },
@@ -18,7 +19,10 @@ const PlayerRound = sequelize.define("player_round", {
     type: DataTypes.INTEGER,
     defaultValue: 0,
   },
+  bonus_points: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
 });
 
-await PlayerRound.schema({});
 export default PlayerRound;

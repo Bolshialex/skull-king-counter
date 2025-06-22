@@ -1,11 +1,15 @@
 import sequelize from "../db/connection.js";
 import { DataTypes } from "sequelize";
 
-//don't forget to define the relationship
 const Stats = sequelize.define("stats", {
   id: {
+    primaryKey: true,
     type: DataTypes.INTEGER,
     autoIncrement: true,
+  },
+  player_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
   },
   games_played: {
     type: DataTypes.INTEGER,
@@ -19,11 +23,10 @@ const Stats = sequelize.define("stats", {
     type: DataTypes.INTEGER,
     defaultValue: 0,
   },
-  loses: {
+  losses: {
     type: DataTypes.INTEGER,
     defaultValue: 0,
   },
 });
 
-await Stats.schema({});
 export default Stats;

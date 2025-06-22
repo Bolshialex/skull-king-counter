@@ -17,5 +17,4 @@ const Player = sequelize.define("player", {
   },
 });
 
-await Player.schema({});
 export default Player;

@@ -3,6 +3,7 @@ import { DataTypes } from "sequelize";
 
 const Game = sequelize.define("game", {
   id: {
+    primaryKey: true,
     type: DataTypes.INTEGER,
     autoIncrement: true,
   },
@@ -12,5 +13,4 @@ const Game = sequelize.define("game", {
   },
 });
 
-await Game.schema({});
 export default Game;
