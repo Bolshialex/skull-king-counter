@@ -1,5 +1,5 @@
 import Game from "./gameSchema.js";
-import PlayerGame from "./playerGameSchema.js";
+import PlayerGame from "./PlayerGameSchema.js";
 import PlayerRound from "./PlayerRoundSchema.js";
 import Round from "./roundSchema.js";
 import Stats from "./statsSchema.js";

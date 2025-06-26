@@ -1,5 +1,6 @@
 import db from "../models/index.js";
 const Player = db.Player;
+const Stats = db.Stats;
 
 export const getAllPlayers = async (req, res) => {
   try {
@@ -16,11 +17,16 @@ export const getAllPlayers = async (req, res) => {
 export const getPlayer = async (req, res) => {
   try {
     const { id } = req.params;
-    if (!id) return res.status(401).json({ message: "Cannot find player" });
+    if (!id) return res.status(404).json({ message: "Cannot find player" });
 
     const player = await Player.findByPk(id);
+    const playerStats = await Stats.findOne({
+      where: { player_id: player.id },
+    });
 
-    return res.status(200).json(player);
+    if (!player) return res.status(404).json({ message: "Cannot find player" });
+
+    return res.status(200).json({ player, playerStats });
   } catch (error) {
     console.error("Error fetching player:", error);
 
@@ -35,9 +41,14 @@ export const createPlayer = async (req, res) => {
     if (!first_name || !last_name)
       return res.status(400).json({ message: "Missing required fields" });
 
-    const player = await Player.create({ first_name, last_name });
+    const player = await Player.create({
+      first_name,
+      last_name,
+    });
 
-    await player.save();
+    await Stats.create({
+      player_id: player.id,
+    });
 
     return res.status(201).json({ message: "Player Created" });
   } catch (error) {
