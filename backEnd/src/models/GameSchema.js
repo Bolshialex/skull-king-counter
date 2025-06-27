@@ -11,6 +11,10 @@ const Game = sequelize.define("game", {
     type: DataTypes.DATE,
     defaultValue: new Date(),
   },
+  finished: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 });
 
 export default Game;
