@@ -15,6 +15,10 @@ const Game = sequelize.define("game", {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
+  roundNeeded: {
+    type: DataTypes.INTEGER,
+    defaultValue: 10,
+  },
 });
 
 export default Game;
