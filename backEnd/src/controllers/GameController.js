@@ -7,12 +7,14 @@ const PlayerGame = db.PlayerGame;
 
 export const createGame = async (req, res) => {
   try {
-    const { players, roundNeeded } = req.body;
+    const { players, roundNeeded, round_number } = req.body;
+    //change to round_needed
     const game = await Game.create({ roundNeeded });
 
     for (const player of players)
       await PlayerGame.create({ game_id: game.id, player_id: player });
-    // should make a round
+
+    await Round.create({ game_id: game.id, round_number });
 
     return res.status(201).json({ message: "Game Created" });
   } catch (error) {
@@ -45,7 +47,6 @@ export const getGames = async (req, res) => {
 export const getGame = async (req, res) => {
   try {
     const { id } = req.params;
-
     const game = await Game.findOne({ where: { id } });
 
     return res.status(200).json(game);

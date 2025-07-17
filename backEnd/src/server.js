@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import db from "./models/index.js";
 import PlayerRouter from "./routes/PlayerRoutes.js";
 import gameRouter from "./routes/GameRoutes.js";
+import colors from "colors";
 
 dotenv.config();
 const { FE_PORT } = process.env;
@@ -17,5 +18,5 @@ app.use("/", PlayerRouter);
 app.use("/", gameRouter);
 
 app.listen(PORT, () => {
-  console.log(`Server listening at http://localhost:${PORT}`);
+  console.log(`Server listening at http://localhost:${PORT}`.bgCyan);
 });

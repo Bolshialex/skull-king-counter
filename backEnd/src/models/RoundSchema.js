@@ -9,6 +9,7 @@ const Round = sequelize.define("round", {
   },
   round_number: {
     type: DataTypes.INTEGER,
+    defaultValue: 1,
     allowNull: false,
   },
 });
