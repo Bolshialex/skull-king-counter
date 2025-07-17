@@ -41,3 +41,16 @@ export const getGames = async (req, res) => {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+export const getGame = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const game = await Game.findOne({ where: { id } });
+
+    return res.status(200).json(game);
+  } catch (error) {
+    console.error("Error finding game:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
