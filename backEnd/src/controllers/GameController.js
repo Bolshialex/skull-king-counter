@@ -7,9 +7,9 @@ const PlayerGame = db.PlayerGame;
 
 export const createGame = async (req, res) => {
   try {
-    const { players, roundNeeded, round_number } = req.body;
-    //change to round_needed
-    const game = await Game.create({ roundNeeded });
+    const { players, rounds_needed, round_number } = req.body;
+
+    const game = await Game.create({ rounds_needed, players });
 
     for (const player of players)
       await PlayerGame.create({ game_id: game.id, player_id: player });
@@ -26,7 +26,16 @@ export const createGame = async (req, res) => {
 
 export const addRound = async (req, res) => {
   try {
-    const { game_id } = req.params;
+    const { round_id } = req.body;
+    const round = await Round.findOne({ where: { id: round_id } });
+    const game = await Game.findOne({ where: { id: round.game_id } });
+    const players = game.players;
+
+    for (let player of players) {
+      console.log(req.body[player]);
+    }
+
+    res.send(game);
   } catch (error) {
     console.error("Error creating round info:", error);
     return res.status(500).json({ message: "Internal Server Error" });

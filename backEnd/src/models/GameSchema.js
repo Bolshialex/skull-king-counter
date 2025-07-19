@@ -15,9 +15,13 @@ const Game = sequelize.define("game", {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
-  roundNeeded: {
+  rounds_needed: {
     type: DataTypes.INTEGER,
     defaultValue: 10,
+  },
+  players: {
+    type: DataTypes.JSON,
+    allowNull: false,
   },
 });
 

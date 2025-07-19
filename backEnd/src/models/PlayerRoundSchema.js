@@ -19,6 +19,10 @@ const PlayerRound = sequelize.define("player_round", {
     type: DataTypes.INTEGER,
     defaultValue: 0,
   },
+  round_score: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
   bonus_points: {
     type: DataTypes.INTEGER,
     defaultValue: 0,
