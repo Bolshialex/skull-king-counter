@@ -31,16 +31,14 @@ export const addRound = async (req, res) => {
     const round = await Round.findOne({ where: { id: round_id } });
     const game = await Game.findOne({ where: { id: round.game_id } });
     const players = game.players;
+    const newPlayerRoundInfo = {};
 
     for (let player of players) {
       const { bid, tricks_won, score, bonus_points, round_score } =
         req.body[player];
-      //if round.round_number is 1 just make a new player_round
-      //else find round where round.game_id == and where round.round_number - 1
-      //take this scores and add it to the info given and create a new player_round
+
       if (round.round_number === 1) {
-        console.log("create new round");
-        await PlayerRound.create({
+        const newInfo = await PlayerRound.create({
           bid,
           tricks_won,
           score: score + round_score + bonus_points,
@@ -49,6 +47,8 @@ export const addRound = async (req, res) => {
           player_id: player,
           round_id,
         });
+
+        newPlayerRoundInfo.player = newInfo;
       } else {
         const prevRound = await Round.findOne({
           where: {
@@ -64,7 +64,7 @@ export const addRound = async (req, res) => {
           },
         });
 
-        await PlayerRound.create({
+        const newInfo = await PlayerRound.create({
           bid,
           tricks_won,
           score: prevPlayerRound.score + round_score + bonus_points,
@@ -73,15 +73,16 @@ export const addRound = async (req, res) => {
           player_id: player,
           round_id,
         });
+
+        newPlayerRoundInfo.player = newInfo;
       }
-      req.body[player];
     }
-    await Round.create({
+    const newRound = await Round.create({
       game_id: round.game_id,
       round_number: round.round_number + 1,
     });
 
-    res.send(game);
+    return res.status(201).json({ newRound, newPlayerRoundInfo });
   } catch (error) {
     console.error("Error creating round info:", error);
     return res.status(500).json({ message: "Internal Server Error" });
