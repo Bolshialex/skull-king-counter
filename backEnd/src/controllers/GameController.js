@@ -43,16 +43,36 @@ export const addRound = async (req, res) => {
         await PlayerRound.create({
           bid,
           tricks_won,
-          score: score + round_score,
+          score: score + round_score + bonus_points,
           bonus_points,
           round_score,
           player_id: player,
           round_id,
         });
       } else {
-        console.log(
-          "find game and round - 1 from the current round and add info creating a new round"
-        );
+        const prevRound = await Round.findOne({
+          where: {
+            game_id: round.game_id,
+            round_number: round.round_number - 1,
+          },
+        });
+
+        const prevPlayerRound = await PlayerRound.findOne({
+          where: {
+            player_id: player,
+            round_id: prevRound.id,
+          },
+        });
+
+        await PlayerRound.create({
+          bid,
+          tricks_won,
+          score: prevPlayerRound.score + round_score + bonus_points,
+          bonus_points,
+          round_score,
+          player_id: player,
+          round_id,
+        });
       }
       req.body[player];
     }

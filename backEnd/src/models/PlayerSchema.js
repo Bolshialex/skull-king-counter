@@ -10,12 +10,10 @@ const Player = sequelize.define("player", {
   first_name: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
   },
   last_name: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
   },
   isActive: {
     type: DataTypes.BOOLEAN,
