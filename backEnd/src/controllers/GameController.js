@@ -74,7 +74,7 @@ export const addRound = async (req, res) => {
           round_id,
         });
 
-        newPlayerRoundInfo.player = newInfo;
+        newPlayerRoundInfo[player] = newInfo;
       }
     }
     const newRound = await Round.create({
