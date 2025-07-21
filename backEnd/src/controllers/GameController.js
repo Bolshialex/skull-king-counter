@@ -4,6 +4,7 @@ const Game = db.Game;
 const Player = db.Player;
 const Round = db.Round;
 const PlayerGame = db.PlayerGame;
+const PlayerRound = db.PlayerRound;
 
 export const createGame = async (req, res) => {
   try {
@@ -32,8 +33,33 @@ export const addRound = async (req, res) => {
     const players = game.players;
 
     for (let player of players) {
-      console.log(req.body[player]);
+      const { bid, tricks_won, score, bonus_points, round_score } =
+        req.body[player];
+      //if round.round_number is 1 just make a new player_round
+      //else find round where round.game_id == and where round.round_number - 1
+      //take this scores and add it to the info given and create a new player_round
+      if (round.round_number === 1) {
+        console.log("create new round");
+        await PlayerRound.create({
+          bid,
+          tricks_won,
+          score: score + round_score,
+          bonus_points,
+          round_score,
+          player_id: player,
+          round_id,
+        });
+      } else {
+        console.log(
+          "find game and round - 1 from the current round and add info creating a new round"
+        );
+      }
+      req.body[player];
     }
+    await Round.create({
+      game_id: round.game_id,
+      round_number: round.round_number + 1,
+    });
 
     res.send(game);
   } catch (error) {
