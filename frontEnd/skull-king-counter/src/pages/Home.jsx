@@ -11,8 +11,11 @@ function Home() {
   return (
     <>
       <div className="container">
-        <h1>Welcome to skull-king counter</h1>
-        <p>Please choose an option</p>
+        <div>
+          <h1 className="title">Skull-King Counter</h1>
+          <p>Choose an option</p>
+        </div>
+
         <div className="btn-container">
           <button onClick={() => handleClick("game")}>Start New Game</button>
           <button>Continue Game</button>
