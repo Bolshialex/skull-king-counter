@@ -1,0 +1,21 @@
+p {
+  margin: 0;
+}
+.container__players {
+  height: 80%;
+}
+.container__search {
+}
+.container__results {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  height: 80%;
+}
+.players__info {
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 2px 15px;
+}

@@ -13,14 +13,16 @@ function Home() {
       <div className="container">
         <div>
           <h1 className="title">Skull-King Counter</h1>
-          <p>Choose an option</p>
+          <p className="title__info">Choose an option</p>
         </div>
 
-        <div className="btn-container">
+        <div className="container__btn">
           <button onClick={() => handleClick("game")}>Start New Game</button>
           <button>Continue Game</button>
-          <button>Create Player</button>
-          <button>Lookup Player</button>
+          <button onClick={() => handleClick("player/create")}>
+            Create Player
+          </button>
+          <button onClick={() => handleClick("players")}>Lookup Player</button>
         </div>
       </div>
     </>
