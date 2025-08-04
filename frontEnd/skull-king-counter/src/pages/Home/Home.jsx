@@ -20,7 +20,7 @@ function Home() {
           <button onClick={() => handleClick("game")}>Start New Game</button>
           <button>Continue Game</button>
           <button onClick={() => handleClick("player/create")}>
-            Create Player
+            Create New Player
           </button>
           <button onClick={() => handleClick("players")}>Lookup Player</button>
         </div>

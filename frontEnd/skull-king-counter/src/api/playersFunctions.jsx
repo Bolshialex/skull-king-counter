@@ -15,4 +15,16 @@ async function getPlayers() {
   }
 }
 
-export default { getPlayers };
+async function getStats(playerId) {
+  try {
+    const res = await axios.get(`${API_URL}/players/${playerId}`, {
+      headers: { "Content-Type": "application/json" },
+    });
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching Player Stats:", error);
+    throw error;
+  }
+}
+
+export default { getPlayers, getStats };

@@ -29,12 +29,11 @@ function PlayerLookup() {
           </div>
           <div className="container__results">
             {players.map((player) => (
-              <div className="players__info" key={player.id}>
+              <button className="players__info" key={player.id}>
                 <p>
-                  {player.first_name} {player.last_name}
+                  Player: <br /> {player.first_name} {player.last_name}
                 </p>
-                <p>Players win percentage</p>
-              </div>
+              </button>
             ))}
           </div>
         </div>

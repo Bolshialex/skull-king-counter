@@ -1,0 +1,96 @@
+import { useState, useEffect } from "react";
+import playersFunction from "../api/playersFunctions";
+
+function GameCreationForm() {
+  const [players, setPlayers] = useState([]);
+  const [formFields, setFormFields] = useState([{ playerId: "" }]);
+  const [numRounds, setNumRounds] = useState(1);
+
+  useEffect(() => {
+    async function fetchPlayers() {
+      try {
+        const data = await playersFunction.getPlayers();
+        setPlayers(data);
+      } catch (error) {
+        console.error("Failed to load players:", error);
+      }
+    }
+
+    fetchPlayers();
+  }, []);
+
+  const handleFormChange = (e, index) => {
+    const data = [...formFields];
+    data[index].playerId = e.target.value;
+    setFormFields(data);
+    console.log(data);
+  };
+
+  const handleAddPlayer = () => {
+    setFormFields([...formFields, { playerId: "" }]);
+  };
+
+  const handleRoundChange = (e) => {
+    setNumRounds(Number(e.target.value));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    const playersArray = [];
+
+    formFields.map((player) => {
+      playersArray.push(Number(player.playerId));
+    });
+
+    console.log(playersArray);
+  };
+
+  return (
+    <form onSubmit={handleFormSubmit}>
+      <label htmlFor="rounds">Number of Rounds:</label>
+      <select
+        name="rounds"
+        id="rounds"
+        value={numRounds}
+        onChange={handleRoundChange}
+      >
+        {[...Array(10)].map((_, i) => (
+          <option key={i + 1} value={i + 1}>
+            {i + 1}
+          </option>
+        ))}
+      </select>
+
+      {formFields.map((form, index) => (
+        <div key={index}>
+          <label htmlFor={`playerId-${index}`}>Player {index + 1}:</label>
+          <select
+            name={`playerId-${index}`}
+            id={`playerId-${index}`}
+            value={form.playerId}
+            onChange={(e) => handleFormChange(e, index)}
+          >
+            <option value="">Select Player</option>
+            {players.map((player) => (
+              <option key={player.id} value={player.id}>
+                {player.first_name + " " + player.last_name}
+              </option>
+            ))}
+          </select>
+        </div>
+      ))}
+
+      <div>
+        <button type="button" onClick={handleAddPlayer}>
+          +
+        </button>
+      </div>
+      <div>
+        <button className="formSubmitBtn">Submit</button>
+      </div>
+    </form>
+  );
+}
+
+export default GameCreationForm;

@@ -1,21 +1,28 @@
 p {
   margin: 0;
 }
+.container {
+  gap: 5px;
+}
 .container__players {
-  height: 80%;
+  height: 70%;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
 }
 .container__search {
+  padding: 10px;
 }
 .container__results {
-  margin: 10px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   overflow-y: auto;
   height: 80%;
 }
-.players__info {
-  background-color: rgb(255, 255, 255);
-  border-radius: 5px;
-  padding: 2px 15px;
+
+button {
+  text-align: left;
 }

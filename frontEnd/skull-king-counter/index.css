@@ -1,67 +1,65 @@
-* {
-  font-family: "Cinzel", Helvetica, sans-serif;
-}
 body {
-  background-color: #5e4f43;
-  text-align: center;
-  height: 100vh;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-}
-
-h1 {
-  color: #333;
+  margin: 0;
+  font-family: "Cinzel", Helvetica, sans-serif;
+  background-color: #0b1a2c; /* Deep ocean background */
+  color: #f2e9dc;
 }
 
 .container {
-  width: 500px;
-  height: 600px;
-  margin: 0 auto;
-  padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 30px;
-  background-color: rgb(242, 191, 81);
-  border-radius: 5px;
-  -webkit-box-shadow: rgba(72, 72, 72, 0.3) 0 1px 3px;
-  -moz-box-shadow: rgba(72, 72, 72, 0.3) 0 1px 3px;
-  box-shadow: rgba(72, 72, 72, 0.3) 0 1px 3px;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #755736;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 15px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
-  transition: 500ms;
-}
-
-button:hover {
-  background-color: #49351f;
-}
-
-.container__btn {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  width: 50%;
-  align-content: center;
   justify-content: center;
-  gap: 10px;
+  height: 100vh;
+  padding: 2rem;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+  background-size: cover;
+  background-blend-mode: overlay;
 }
 
 .title {
-  font-size: 40px;
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #d4af37; /* Treasure gold */
+  text-shadow: 2px 2px 4px #000;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
+
 .title__info {
-  font-size: 20px;
+  font-size: 1.2rem;
+  color: #f2e9dc;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-style: italic;
+}
+
+.container__btn {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.container__btn button {
+  padding: 1rem 2rem;
+  background-color: #1f4e5f; /* Deep sea blue */
+  color: #f2e9dc;
+  border: 2px solid #d4af37;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-family: "Pirata One", "Garamond", serif;
+  letter-spacing: 1px;
+}
+
+.container__btn button:hover {
+  background-color: #266f85; /* Lighter sea teal */
+  transform: scale(1.05);
+  border-color: #ffd700;
+}
+
+.container__btn button:active {
+  background-color: #104151;
 }
