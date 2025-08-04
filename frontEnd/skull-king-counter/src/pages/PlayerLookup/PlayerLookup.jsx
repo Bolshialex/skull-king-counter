@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import playersFunction from "../../api/playersFunctions";
+import playersFunctions from "../../api/playersFunctions";
 
 function PlayerLookup() {
   const [players, setPlayers] = useState([]);
   useEffect(() => {
     async function fetchPlayers() {
       try {
-        const data = await playersFunction.getPlayers();
+        const data = await playersFunctions.getPlayers();
         setPlayers(data);
       } catch (error) {
         console.error("Failed to load players:", error);

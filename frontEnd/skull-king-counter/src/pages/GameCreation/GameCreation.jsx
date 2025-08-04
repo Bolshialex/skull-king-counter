@@ -1,4 +1,3 @@
-import React from "react";
 import GameCreationForm from "../../components/GameCreationForm";
 
 function GameCreation() {

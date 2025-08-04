@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import playersFunction from "../api/playersFunctions";
+import playersFunctions from "../api/playersFunctions";
 
 function GameCreationForm() {
   const [players, setPlayers] = useState([]);
@@ -9,7 +9,7 @@ function GameCreationForm() {
   useEffect(() => {
     async function fetchPlayers() {
       try {
-        const data = await playersFunction.getPlayers();
+        const data = await playersFunctions.getPlayers();
         setPlayers(data);
       } catch (error) {
         console.error("Failed to load players:", error);
@@ -23,7 +23,6 @@ function GameCreationForm() {
     const data = [...formFields];
     data[index].playerId = e.target.value;
     setFormFields(data);
-    console.log(data);
   };
 
   const handleAddPlayer = () => {
@@ -34,16 +33,23 @@ function GameCreationForm() {
     setNumRounds(Number(e.target.value));
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     const playersArray = [];
-
     formFields.map((player) => {
       playersArray.push(Number(player.playerId));
     });
 
-    console.log(playersArray);
+    try {
+      const res = await playersFunctions.createGame({
+        numRounds,
+        playersArray,
+      });
+      console.log(res);
+    } catch (error) {
+      console.error("Failed to create game:", error);
+    }
   };
 
   return (

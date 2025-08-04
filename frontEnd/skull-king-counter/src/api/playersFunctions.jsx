@@ -27,4 +27,21 @@ async function getStats(playerId) {
   }
 }
 
-export default { getPlayers, getStats };
+async function createGame(gameInfo) {
+  const { playersArray, numRounds } = gameInfo;
+  try {
+    const res = await axios.post(
+      `${API_URL}/game`,
+      { players: playersArray, rounds_needed: numRounds, roundNumber: 1 },
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    return res.data;
+  } catch (error) {
+    console.error("Error creating game:", error);
+    throw error;
+  }
+}
+
+export default { getPlayers, getStats, createGame };
