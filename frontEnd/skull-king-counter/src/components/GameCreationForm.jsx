@@ -53,25 +53,33 @@ function GameCreationForm() {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <label htmlFor="rounds">Number of Rounds:</label>
-      <select
-        name="rounds"
-        id="rounds"
-        value={numRounds}
-        onChange={handleRoundChange}
-      >
-        {[...Array(10)].map((_, i) => (
-          <option key={i + 1} value={i + 1}>
-            {i + 1}
-          </option>
-        ))}
-      </select>
+    <form className="game-form" onSubmit={handleFormSubmit}>
+      <div className="form-sub-container">
+        <label htmlFor="rounds" className="form-label">
+          Number of Rounds
+        </label>
+        <select
+          name="rounds"
+          id="rounds"
+          className="form-input"
+          value={numRounds}
+          onChange={handleRoundChange}
+        >
+          {[...Array(10)].map((_, i) => (
+            <option key={i + 1} value={i + 1}>
+              {i + 1}
+            </option>
+          ))}
+        </select>
+      </div>
 
       {formFields.map((form, index) => (
-        <div key={index}>
-          <label htmlFor={`playerId-${index}`}>Player {index + 1}:</label>
+        <div className="form-sub-container" key={index}>
+          <label className="form-label" htmlFor={`playerId-${index}`}>
+            Player {index + 1}
+          </label>
           <select
+            className="form-input"
             name={`playerId-${index}`}
             id={`playerId-${index}`}
             value={form.playerId}
@@ -86,14 +94,13 @@ function GameCreationForm() {
           </select>
         </div>
       ))}
-
-      <div>
-        <button type="button" onClick={handleAddPlayer}>
+      <div className="form-btn-container">
+        <button className="add-btn" type="button" onClick={handleAddPlayer}>
           +
         </button>
       </div>
-      <div>
-        <button className="formSubmitBtn">Submit</button>
+      <div className="form-btn-container-submit">
+        <button className="form-btn">Submit</button>
       </div>
     </form>
   );

@@ -6,8 +6,8 @@ function GameCreation() {
       <div>
         <h1 className="title">Start New Game</h1>
       </div>
-      <div>
-        <h2>Game Info</h2>
+      <div className="form-container">
+        <p className="title__info">Game Settings</p>
         <GameCreationForm />
       </div>
     </div>

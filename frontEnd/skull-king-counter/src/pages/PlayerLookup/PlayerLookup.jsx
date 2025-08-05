@@ -24,14 +24,17 @@ function PlayerLookup() {
         </div>
         <div className="container__players">
           <div className="container__search">
-            <label htmlFor="">Search Players: </label>
-            <input type="text" />
+            <input
+              type="text"
+              className="form-input"
+              placeholder="Search Players"
+            />
           </div>
           <div className="container__results">
             {players.map((player) => (
               <button className="players__info" key={player.id}>
                 <p>
-                  Player: <br /> {player.first_name} {player.last_name}
+                  Player <br /> {player.first_name} {player.last_name}
                 </p>
               </button>
             ))}

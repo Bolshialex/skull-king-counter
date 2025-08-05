@@ -43,7 +43,7 @@ body {
 
 .container__btn button {
   padding: 1rem 2rem;
-  background-color: #1f4e5f; /* Deep sea blue */
+  background-color: #0b1a2c;
   color: #f2e9dc;
   border: 2px solid #d4af37;
   border-radius: 10px;
@@ -55,11 +55,11 @@ body {
 }
 
 .container__btn button:hover {
-  background-color: #266f85; /* Lighter sea teal */
+  background-color: #1a3c66; /* Lighter sea teal */
   transform: scale(1.05);
   border-color: #ffd700;
 }
 
 .container__btn button:active {
-  background-color: #104151;
+  background-color: #1a3c66;
 }

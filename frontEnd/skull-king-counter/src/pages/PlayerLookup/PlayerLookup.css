@@ -4,15 +4,12 @@ p {
 .container {
   gap: 5px;
 }
-.container__players {
-  height: 70%;
-  padding: 20px;
-  border-radius: 5px;
+
+.container__search {
+  width: 300px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
-}
-.container__search {
-  padding: 10px;
 }
 .container__results {
   padding: 10px;
@@ -23,6 +20,26 @@ p {
   height: 80%;
 }
 
-button {
+.container__results button {
   text-align: left;
+  padding: 5px 10px;
+  background-color: #0b1a2c;
+  color: #f2e9dc;
+  border: 2px solid #d4af37;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-family: "Pirata One", "Garamond", serif;
+  letter-spacing: 1px;
+}
+
+.container__results button:hover {
+  background-color: #1a3c66;
+  transform: scale(1.05);
+  border-color: #ffd700;
+}
+
+.container__results button:active {
+  background-color: #1a3c66;
 }
