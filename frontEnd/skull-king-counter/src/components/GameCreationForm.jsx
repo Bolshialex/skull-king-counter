@@ -5,6 +5,7 @@ function GameCreationForm() {
   const [players, setPlayers] = useState([]);
   const [formFields, setFormFields] = useState([{ playerId: "" }]);
   const [numRounds, setNumRounds] = useState(1);
+  const [playerCount, setPlayerCount] = useState(2);
 
   useEffect(() => {
     async function fetchPlayers() {
@@ -22,10 +23,13 @@ function GameCreationForm() {
   const handleFormChange = (e, index) => {
     const data = [...formFields];
     data[index].playerId = e.target.value;
+    console.log(players);
     setFormFields(data);
   };
 
   const handleAddPlayer = () => {
+    console.log(playerCount);
+    setPlayerCount(playerCount + 1);
     setFormFields([...formFields, { playerId: "" }]);
   };
 
@@ -95,9 +99,13 @@ function GameCreationForm() {
         </div>
       ))}
       <div className="form-btn-container">
-        <button className="add-btn" type="button" onClick={handleAddPlayer}>
-          +
-        </button>
+        {playerCount > 8 ? (
+          <></>
+        ) : (
+          <button className="add-btn" type="button" onClick={handleAddPlayer}>
+            +
+          </button>
+        )}
       </div>
       <div className="form-btn-container-submit">
         <button className="form-btn">Submit</button>
