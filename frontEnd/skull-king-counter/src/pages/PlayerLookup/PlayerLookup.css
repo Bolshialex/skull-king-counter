@@ -43,3 +43,11 @@ p {
 .container__results button:active {
   background-color: #1a3c66;
 }
+
+.players__info {
+  font-weight: 500;
+}
+
+.players__name {
+  font-weight: 700;
+}

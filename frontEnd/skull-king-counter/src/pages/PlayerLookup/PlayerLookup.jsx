@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import playersFunctions from "../../api/playersFunctions";
 
 function PlayerLookup() {
@@ -33,8 +33,9 @@ function PlayerLookup() {
           <div className="container__results">
             {players.map((player) => (
               <button className="players__info" key={player.id}>
-                <p>
-                  Player <br /> {player.first_name} {player.last_name}
+                <p className="players__title">Player</p>
+                <p className="players__name">
+                  {player.first_name} {player.last_name}
                 </p>
               </button>
             ))}

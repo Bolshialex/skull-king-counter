@@ -44,4 +44,22 @@ async function createGame(gameInfo) {
   }
 }
 
-export default { getPlayers, getStats, createGame };
+async function createPlayer(playerInfo) {
+  const { first_name, last_name } = playerInfo;
+  try {
+    const res = await axios.post(
+      `${API_URL}/players`,
+      {
+        first_name,
+        last_name,
+      },
+      { headers: { "Content-Type": "application/json" } }
+    );
+    return res.data;
+  } catch (error) {
+    console.error("Error creating player:", error);
+    throw error;
+  }
+}
+
+export default { getPlayers, getStats, createGame, createPlayer };
