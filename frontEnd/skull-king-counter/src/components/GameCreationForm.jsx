@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import playersFunctions from "../api/playersFunctions";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 function GameCreationForm() {
   const [players, setPlayers] = useState([]);
@@ -18,23 +19,26 @@ function GameCreationForm() {
     }
 
     fetchPlayers();
-  }, []);
+  }, [formFields]);
 
   const handleFormChange = (e, index) => {
     const data = [...formFields];
     data[index].playerId = e.target.value;
-    console.log(players);
     setFormFields(data);
   };
 
   const handleAddPlayer = () => {
-    console.log(playerCount);
     setPlayerCount(playerCount + 1);
     setFormFields([...formFields, { playerId: "" }]);
   };
 
   const handleRoundChange = (e) => {
     setNumRounds(Number(e.target.value));
+  };
+
+  const handleDeleteBtn = () => {
+    setPlayerCount(playerCount - 1);
+    formFields.pop();
   };
 
   const handleFormSubmit = async (e) => {
@@ -82,20 +86,27 @@ function GameCreationForm() {
           <label className="form-label" htmlFor={`playerId-${index}`}>
             Player {index + 1}
           </label>
-          <select
-            className="form-input"
-            name={`playerId-${index}`}
-            id={`playerId-${index}`}
-            value={form.playerId}
-            onChange={(e) => handleFormChange(e, index)}
-          >
-            <option value="">Select Player</option>
-            {players.map((player) => (
-              <option key={player.id} value={player.id}>
-                {player.first_name + " " + player.last_name}
-              </option>
-            ))}
-          </select>
+          <div className="form-select-container">
+            <select
+              className="form-input"
+              name={`playerId-${index}`}
+              id={`playerId-${index}`}
+              value={form.playerId}
+              onChange={(e) => handleFormChange(e, index)}
+            >
+              <option>Select Player</option>
+              {players.map((player) => (
+                <option key={player.id} value={player.id}>
+                  {player.first_name + " " + player.last_name}
+                </option>
+              ))}
+            </select>
+            {index > 1 ? (
+              <FaRegTrashCan className="trash-icon" onClick={handleDeleteBtn} />
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
       ))}
       <div className="form-btn-container">

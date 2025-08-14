@@ -69,3 +69,22 @@
 .add-btn:hover {
   color: #d4af37;
 }
+
+.form-select-container {
+  display: flex;
+  gap: 10px;
+  position: relative;
+}
+
+.trash-icon {
+  position: absolute;
+  transition: 250ms;
+  left: 320px;
+  top: 10px;
+  font-size: 20px;
+  transform: translate(-50%, -50%);
+}
+.trash-icon:hover {
+  font-size: 22px;
+  color: #d4af37;
+}
