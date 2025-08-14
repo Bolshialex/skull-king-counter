@@ -15,9 +15,11 @@ export const createGame = async (req, res) => {
     for (const player of players)
       await PlayerGame.create({ game_id: game.id, player_id: player });
 
-    await Round.create({ game_id: game.id, round_number });
+    const round = await Round.create({ game_id: game.id, round_number });
 
-    return res.status(201).json({ message: "Game Created" });
+    return res
+      .status(201)
+      .json({ message: "Game Created", round_info: round, game_info: game });
   } catch (error) {
     console.error("Error creating game:", error);
 

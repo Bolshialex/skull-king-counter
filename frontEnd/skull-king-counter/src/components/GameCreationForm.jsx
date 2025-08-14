@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import playersFunctions from "../api/playersFunctions";
 import { FaRegTrashCan } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 function GameCreationForm() {
   const [players, setPlayers] = useState([]);
   const [formFields, setFormFields] = useState([{ playerId: "" }]);
   const [numRounds, setNumRounds] = useState(1);
   const [playerCount, setPlayerCount] = useState(2);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchPlayers() {
@@ -54,7 +56,12 @@ function GameCreationForm() {
         numRounds,
         playersArray,
       });
+
       console.log(res);
+
+      if (res.message == "Game Created") {
+        navigate(`/round/${res.round_info.id}`, { state: res });
+      }
     } catch (error) {
       console.error("Failed to create game:", error);
     }

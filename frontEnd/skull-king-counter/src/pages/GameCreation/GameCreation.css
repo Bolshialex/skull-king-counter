@@ -10,9 +10,6 @@
   flex-direction: column;
 }
 
-.form-label {
-}
-
 .form-btn {
   padding: 5px 30px;
   font: inherit;
@@ -47,9 +44,6 @@
       transform: translateY(-1.5rem);
     }
   }
-}
-
-.form-btn-container {
 }
 
 .form-btn-container-submit {
