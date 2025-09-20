@@ -1,4 +1,4 @@
-import GameCreationForm from "../../components/GameCreationForm";
+import GameCreationForm from "../components/GameCreationForm";
 
 function GameCreation() {
   return (

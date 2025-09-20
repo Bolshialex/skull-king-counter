@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import GameCreation from "./pages/GameCreation/GameCreation";
-import PlayerLookup from "./pages/PlayerLookup/PlayerLookup";
-import PlayerCreation from "./pages/PlayerCreation/PlayerCreation";
-import RoundPage from "./pages/RoundPage/RoundPage";
+import Home from "./pages/Home";
+import GameCreation from "./pages/GameCreation";
+import PlayerLookup from "./pages/PlayerLookup";
+import PlayerCreation from "./pages/PlayerCreation";
+import RoundPage from "./pages//RoundPage";
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import PlayerCreationForm from "../../components/PlayerCreationForm";
+import PlayerCreationForm from "../components/PlayerCreationForm";
 
 function PlayerCreation() {
   return (

@@ -15,6 +15,16 @@ async function getPlayers() {
   }
 }
 
+async function getPlayer(id) {
+  try {
+    const res = await axios.get(`${API_URL}/players/${id}`);
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching Player:", error);
+    throw error;
+  }
+}
+
 async function getStats(playerId) {
   try {
     const res = await axios.get(`${API_URL}/players/${playerId}`, {
@@ -62,4 +72,25 @@ async function createPlayer(playerInfo) {
   }
 }
 
-export default { getPlayers, getStats, createGame, createPlayer };
+async function getPlayerRoundInfo(player_id, round_id) {
+  try {
+    const playerInfo = await axios.get(`${API_URL}/players/${player_id}`);
+    const playerRoundInfo = await axios.get(
+      `${API_URL}/player-round/${player_id}/${round_id}`
+    );
+
+    return [playerInfo.data, playerRoundInfo.data];
+  } catch (error) {
+    console.error("Error getting player-round info:", error);
+    throw error;
+  }
+}
+
+export default {
+  getPlayers,
+  getStats,
+  createGame,
+  createPlayer,
+  getPlayer,
+  getPlayerRoundInfo,
+};

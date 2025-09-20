@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import playersFunctions from "../api/playersFunctions";
+import gameFunctions from "../api/gameFunctions";
 
 function PlayerCreationForm() {
   const [formFields, setFormFields] = useState({
@@ -21,7 +21,7 @@ function PlayerCreationForm() {
     e.preventDefault();
 
     try {
-      const res = await playersFunctions.createPlayer(formFields);
+      const res = await gameFunctions.createPlayer(formFields);
       console.log(res);
     } catch (error) {
       console.error("Error creating game:", error);

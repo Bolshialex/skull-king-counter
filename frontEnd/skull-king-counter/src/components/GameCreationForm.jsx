@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import playersFunctions from "../api/playersFunctions";
+import gameFunctions from "../api/gameFunctions";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ function GameCreationForm() {
   useEffect(() => {
     async function fetchPlayers() {
       try {
-        const data = await playersFunctions.getPlayers();
+        const data = await gameFunctions.getPlayers();
         setPlayers(data);
       } catch (error) {
         console.error("Failed to load players:", error);
@@ -52,7 +52,7 @@ function GameCreationForm() {
     });
 
     try {
-      const res = await playersFunctions.createGame({
+      const res = await gameFunctions.createGame({
         numRounds,
         playersArray,
       });

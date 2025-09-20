@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import playersFunctions from "../../api/playersFunctions";
+import playersFunctions from "../api/gameFunctions";
 
 function PlayerLookup() {
   const [players, setPlayers] = useState([]);

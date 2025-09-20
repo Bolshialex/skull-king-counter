@@ -1,3 +1,4 @@
+import { where } from "sequelize";
 import db from "../models/index.js";
 
 const Game = db.Game;
@@ -43,14 +44,14 @@ export const addRound = async (req, res) => {
         const newInfo = await PlayerRound.create({
           bid,
           tricks_won,
-          score: score + round_score + bonus_points,
+          score: round_score + bonus_points,
           bonus_points,
           round_score,
           player_id: player,
           round_id,
         });
 
-        newPlayerRoundInfo.player = newInfo;
+        newPlayerRoundInfo[player] = newInfo;
       } else {
         const prevRound = await Round.findOne({
           where: {
@@ -97,7 +98,7 @@ export const getGames = async (req, res) => {
 
     return res.status(200).json(allGames);
   } catch (error) {
-    console.error("Error getting games:", error);
+    console.error("Error finding games:", error);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
@@ -110,6 +111,22 @@ export const getGame = async (req, res) => {
     return res.status(200).json(game);
   } catch (error) {
     console.error("Error finding game:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export const getPlayerRound = async (req, res) => {
+  try {
+    const { player_id, round_id } = req.params;
+    console.log(player_id);
+    console.log(round_id);
+    const playerRoundInfo = await PlayerRound.findAll({
+      where: { player_id, round_id },
+    });
+
+    return res.status(200).json(playerRoundInfo);
+  } catch (error) {
+    console.error("Error finding round information");
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };

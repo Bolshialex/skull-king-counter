@@ -29,7 +29,6 @@ export const getPlayer = async (req, res) => {
     return res.status(200).json({ player, playerStats });
   } catch (error) {
     console.error("Error fetching player:", error);
-
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
